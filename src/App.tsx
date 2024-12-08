@@ -21,7 +21,8 @@ import {
   AccountPreviewProps,
 } from '@toolpad/core/Account';
 import type { Navigation, Router, Session } from '@toolpad/core/AppProvider';
-
+import HomePage from './pages/Home/HomePage';
+import ServerPage from './pages/Server/ServerPage';
 const NAVIGATION: Navigation = [
   {
     kind: 'header',
@@ -30,7 +31,7 @@ const NAVIGATION: Navigation = [
   {
     segment: 'home',
     title: 'Home',
-    icon: <HomeIcon />,
+    icon: <HomeIcon />
   },
   {
     segment: 'server',
@@ -55,7 +56,13 @@ const demoTheme = createTheme({
   },
 });
 
+
 function DemoPageContent({ pathname }: { pathname: string }) {
+  const pageContentMap: Record<string, JSX.Element> = {
+    '/home': <HomePage />,
+    '/server': <ServerPage />
+  };
+
   return (
     <Box
       sx={{
@@ -66,10 +73,11 @@ function DemoPageContent({ pathname }: { pathname: string }) {
         textAlign: 'center',
       }}
     >
-      <Typography>Dashboard content for {pathname}</Typography>
+      {pageContentMap[pathname] || <Typography>Page Not Found</Typography>}
     </Box>
   );
 }
+
 function AccountSidebarPreview(props: AccountPreviewProps & { mini: boolean }) {
   const { handleClick, open, mini } = props;
   return (
