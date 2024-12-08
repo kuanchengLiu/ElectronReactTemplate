@@ -21,9 +21,6 @@ import {
   AccountPreviewProps,
 } from '@toolpad/core/Account';
 import type { Navigation, Router, Session } from '@toolpad/core/AppProvider';
-import Home from './pages/Home/HomePage';
-import Server from './pages/Server/ServerPage';
-
 
 const NAVIGATION: Navigation = [
   {
