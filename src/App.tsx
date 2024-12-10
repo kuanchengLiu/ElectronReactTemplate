@@ -1,76 +1,71 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import { createTheme } from '@mui/material/styles';
-import HomeIcon from '@mui/icons-material/Home';
-import DvrIcon from '@mui/icons-material/Dvr';
-import { AppProvider } from '@toolpad/core/AppProvider';
-import { DashboardLayout, SidebarFooterProps } from '@toolpad/core/DashboardLayout';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import HomeIcon from "@mui/icons-material/Home";
+import DvrIcon from "@mui/icons-material/Dvr";
+import BadgeIcon from "@mui/icons-material/Badge";
+import { AppProvider } from "@toolpad/core/AppProvider";
+import {
+  DashboardLayout,
+  SidebarFooterProps,
+} from "@toolpad/core/DashboardLayout";
 import {
   Account,
   AccountPreview,
   AccountPopoverFooter,
   SignOutButton,
   AccountPreviewProps,
-} from '@toolpad/core/Account';
-import type { Navigation, Router, Session } from '@toolpad/core/AppProvider';
-import HomePage from './pages/Home/HomePage';
-import ServerPage from './pages/Server/ServerPage';
+} from "@toolpad/core/Account";
+import type { Navigation, Router, Session } from "@toolpad/core/AppProvider";
+import HomePage from "./pages/Home/HomePage";
+import ServerPage from "./pages/Server/ServerPage";
+import UserPage from "./pages/User/UserPage";
+import { GlobalTheme } from "./themes/GlobalTheme";
+
 const NAVIGATION: Navigation = [
   {
-    kind: 'header',
-    title: 'Main items',
+    kind: "header",
+    title: "Main items",
   },
   {
-    segment: 'home',
-    title: 'Home',
-    icon: <HomeIcon />
+    segment: "home",
+    title: "Home",
+    icon: <HomeIcon />,
   },
   {
-    segment: 'server',
-    title: 'Server',
+    segment: "server",
+    title: "Server",
     icon: <DvrIcon />,
+  },
+  {
+    segment: "user",
+    title: "User",
+    icon: <BadgeIcon />,
   },
 ];
 
-const demoTheme = createTheme({
-  cssVariables: {
-    colorSchemeSelector: 'data-toolpad-color-scheme',
-  },
-  colorSchemes: { light: true, dark: true },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 600,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
-});
-
-
 function DemoPageContent({ pathname }: { pathname: string }) {
   const pageContentMap: Record<string, JSX.Element> = {
-    '/home': <HomePage />,
-    '/server': <ServerPage />
+    "/home": <HomePage />,
+    "/server": <ServerPage />,
+    "/user": <UserPage />,
   };
 
   return (
     <Box
       sx={{
         py: 4,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
       }}
     >
       {pageContentMap[pathname] || <Typography>Page Not Found</Typography>}
@@ -84,7 +79,7 @@ function AccountSidebarPreview(props: AccountPreviewProps & { mini: boolean }) {
     <Stack direction="column" p={0} overflow="hidden">
       <Divider />
       <AccountPreview
-        variant={mini ? 'condensed' : 'expanded'}
+        variant={mini ? "condensed" : "expanded"}
         handleClick={handleClick}
         open={open}
       />
@@ -95,22 +90,22 @@ function AccountSidebarPreview(props: AccountPreviewProps & { mini: boolean }) {
 const accounts = [
   {
     id: 1,
-    name: 'Bharat Kashyap',
-    email: 'bharatkashyap@outlook.com',
-    image: '',
+    name: "Bharat Kashyap",
+    email: "bharatkashyap@outlook.com",
+    image: "",
     projects: [
       {
         id: 3,
-        title: 'Project X',
+        title: "Project X",
       },
     ],
   },
   {
     id: 2,
-    name: 'Bharat MUI',
-    email: 'bharat@mui.com',
-    color: '#8B4513', // Brown color
-    projects: [{ id: 4, title: 'Project A' }],
+    name: "Bharat MUI",
+    email: "bharat@mui.com",
+    color: "#8B4513", // Brown color
+    projects: [{ id: 4, title: "Project A" }],
   },
 ];
 
@@ -126,8 +121,8 @@ function SidebarFooterAccountPopover() {
             key={account.id}
             component="button"
             sx={{
-              justifyContent: 'flex-start',
-              width: '100%',
+              justifyContent: "flex-start",
+              width: "100%",
               columnGap: 2,
             }}
           >
@@ -136,26 +131,26 @@ function SidebarFooterAccountPopover() {
                 sx={{
                   width: 32,
                   height: 32,
-                  fontSize: '0.95rem',
+                  fontSize: "0.95rem",
                   bgcolor: account.color,
                 }}
-                src={account.image ?? ''}
-                alt={account.name ?? ''}
+                src={account.image ?? ""}
+                alt={account.name ?? ""}
               >
                 {account.name[0]}
               </Avatar>
             </ListItemIcon>
             <ListItemText
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                width: '100%',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                width: "100%",
               }}
               primary={account.name}
               secondary={account.email}
-              primaryTypographyProps={{ variant: 'body2' }}
-              secondaryTypographyProps={{ variant: 'caption' }}
+              primaryTypographyProps={{ variant: "body2" }}
+              secondaryTypographyProps={{ variant: "caption" }}
             />
           </MenuItem>
         ))}
@@ -176,7 +171,10 @@ const createPreviewComponent = (mini: boolean) => {
 };
 
 function SidebarFooterAccount({ mini }: SidebarFooterProps) {
-  const PreviewComponent = React.useMemo(() => createPreviewComponent(mini), [mini]);
+  const PreviewComponent = React.useMemo(
+    () => createPreviewComponent(mini),
+    [mini]
+  );
   return (
     <Account
       slots={{
@@ -185,27 +183,27 @@ function SidebarFooterAccount({ mini }: SidebarFooterProps) {
       }}
       slotProps={{
         popover: {
-          transformOrigin: { horizontal: 'left', vertical: 'bottom' },
-          anchorOrigin: { horizontal: 'right', vertical: 'bottom' },
+          transformOrigin: { horizontal: "left", vertical: "bottom" },
+          anchorOrigin: { horizontal: "right", vertical: "bottom" },
           disableAutoFocus: true,
           slotProps: {
             paper: {
               elevation: 0,
               sx: {
-                overflow: 'visible',
+                overflow: "visible",
                 filter: (theme) =>
-                  `drop-shadow(0px 2px 8px ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.10)' : 'rgba(0,0,0,0.32)'})`,
+                  `drop-shadow(0px 2px 8px ${theme.palette.mode === "dark" ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.32)"})`,
                 mt: 1,
-                '&::before': {
+                "&::before": {
                   content: '""',
-                  display: 'block',
-                  position: 'absolute',
+                  display: "block",
+                  position: "absolute",
                   bottom: 10,
                   left: 0,
                   width: 10,
                   height: 10,
-                  bgcolor: 'background.paper',
-                  transform: 'translate(-50%, -50%) rotate(45deg)',
+                  bgcolor: "background.paper",
+                  transform: "translate(-50%, -50%) rotate(45deg)",
                   zIndex: 0,
                 },
               },
@@ -219,15 +217,14 @@ function SidebarFooterAccount({ mini }: SidebarFooterProps) {
 
 const demoSession = {
   user: {
-    name: 'Bharat Kashyap',
-    email: 'bharatkashyap@outlook.com',
+    name: "Bharat Kashyap",
+    email: "bharatkashyap@outlook.com",
     // image: 'https://avatars.githubusercontent.com/u/19550456',
   },
 };
 
 export default function DashboardLayoutAccountSidebar() {
-
-  const [pathname, setPathname] = React.useState('/dashboard');
+  const [pathname, setPathname] = React.useState("/dashboard");
 
   const router = React.useMemo<Router>(() => {
     return {
@@ -253,12 +250,18 @@ export default function DashboardLayoutAccountSidebar() {
     <AppProvider
       navigation={NAVIGATION}
       router={router}
-      theme={demoTheme}
+      theme={GlobalTheme}
       authentication={authentication}
       session={session}
+      branding={{
+        title: "Pdng Dashboard",
+      }}
     >
       <DashboardLayout
-        slots={{ toolbarAccount: () => null, sidebarFooter: SidebarFooterAccount }}
+        slots={{
+          toolbarAccount: () => null,
+          sidebarFooter: SidebarFooterAccount,
+        }}
       >
         <DemoPageContent pathname={pathname} />
       </DashboardLayout>

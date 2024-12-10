@@ -78,3 +78,9 @@ src/
     └── variables.css
 
 ```
+
+
+## User Require ment
+1. server dashboard
+   1. nice to have
+2. user dashboard

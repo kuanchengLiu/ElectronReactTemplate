@@ -1,0 +1,22 @@
+.create-server-button.MuiButton-root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 50px; // Rounded edges
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); // Subtle shadow
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+
+  // Optional focus state for accessibility
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.5); // Blue focus ring
+  }
+
+  .icon {
+    margin-right: 8px; // Space between icon and text
+    font-size: 20px; // Icon size
+  }
+}
