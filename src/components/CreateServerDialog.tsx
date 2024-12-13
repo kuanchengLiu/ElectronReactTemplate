@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { useForm } from "../hooks/useForm";
+import { useTheme } from "@mui/material/styles";
 
 const CreateServerDialog: React.FC<{
   open: boolean;
@@ -21,7 +22,7 @@ const CreateServerDialog: React.FC<{
 }> = ({ open, onClose, onCreate }) => {
   const { formData, errors, handleChange, handleSubmit } = useForm({
     initialValues: {
-      Servername: "",
+      ServerName: "",
       BuildPlan: "",
       Site: "",
       ServerType: "beta",
@@ -35,7 +36,7 @@ const CreateServerDialog: React.FC<{
       Location: "",
     },
     validationRules: {
-      Servername: /^[a-zA-Z0-9_-]{3,}$/,
+      ServerName: /^[a-zA-Z0-9_-]{3,}$/,
       BuildPlan: /^([a-zA-Z0-9]+,)*[a-zA-Z0-9]+$/,
       IPAddress:
         /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/,
@@ -46,21 +47,35 @@ const CreateServerDialog: React.FC<{
     onSubmit: onCreate,
     onClose,
   });
+  const theme = useTheme();
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="md"
+      PaperProps={{
+        style: {
+          backgroundColor:
+            theme.palette.mode === "dark" ? "#1e1e1e" : "#ffffff",
+          color: theme.palette.text.primary,
+        },
+      }}
+    >
       <DialogTitle>Create New Server</DialogTitle>
       <DialogContent>
         <Grid container spacing={2} p={1}>
           <Grid size={4}>
             <TextField
-              name="Servername"
-              label="Servername"
-              value={formData.Servername}
+              name="ServerName"
+              label="ServerName*"
+              value={formData.ServerName}
               onChange={handleChange}
-              error={!!errors.Servername}
-              helperText={errors.Servername}
+              error={!!errors.ServerName}
+              helperText={errors.ServerName}
               fullWidth
+              variant="standard"
             />
           </Grid>
           <Grid size={4}>
@@ -72,6 +87,7 @@ const CreateServerDialog: React.FC<{
               error={!!errors.BuildPlan}
               helperText={errors.BuildPlan}
               fullWidth
+              variant="filled"
             />
           </Grid>
           <Grid size={4}>
