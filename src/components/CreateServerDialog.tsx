@@ -54,11 +54,11 @@ const CreateServerDialog: React.FC<{
       open={open}
       onClose={onClose}
       fullWidth
-      maxWidth="md"
+      maxWidth="lg"
       PaperProps={{
         style: {
           backgroundColor:
-            theme.palette.mode === "dark" ? "#1e1e1e" : "#ffffff",
+            theme.palette.mode === "dark" ? "#1A2027" : "#ffffff",
           color: theme.palette.text.primary,
         },
       }}
@@ -66,120 +66,133 @@ const CreateServerDialog: React.FC<{
       <DialogTitle>Create New Server</DialogTitle>
       <DialogContent>
         <Grid container spacing={2} p={1}>
-          <Grid size={4}>
-            <TextField
-              name="ServerName"
-              label="ServerName*"
-              value={formData.ServerName}
-              onChange={handleChange}
-              error={!!errors.ServerName}
-              helperText={errors.ServerName}
-              fullWidth
-              variant="standard"
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="BuildPlan"
-              label="Build Plan (comma-separated)"
-              value={formData.BuildPlan}
-              onChange={handleChange}
-              error={!!errors.BuildPlan}
-              helperText={errors.BuildPlan}
-              fullWidth
-              variant="filled"
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="Site"
-              label="Site"
-              value={formData.Site}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid size={4}>
-            <FormLabel component="legend">Environment</FormLabel>
-            <RadioGroup
-              name="ServerType"
-              value={formData.ServerType}
-              onChange={handleChange}
-              row
-            >
-              <FormControlLabel value="beta" control={<Radio />} label="Beta" />
-              <FormControlLabel value="prod" control={<Radio />} label="Prod" />
-            </RadioGroup>
-          </Grid>
-          <Grid size={4}>
-            <FormLabel component="legend">Is Master</FormLabel>
-            <RadioGroup
-              name="IsMaster"
-              value={formData.IsMaster}
-              onChange={handleChange}
-              row
-            >
-              <FormControlLabel value="true" control={<Radio />} label="True" />
-              <FormControlLabel
-                value="false"
-                control={<Radio />}
-                label="False"
+          <Grid container size={8} spacing={2}>
+            <Grid size={12}>
+              <TextField
+                name="ServerName"
+                label="ServerName*"
+                value={formData.ServerName}
+                onChange={handleChange}
+                error={!!errors.ServerName}
+                helperText={errors.ServerName}
+                fullWidth
               />
-            </RadioGroup>
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="BuildPlan"
+                label="Build Plan (comma-separated)"
+                value={formData.BuildPlan}
+                onChange={handleChange}
+                error={!!errors.BuildPlan}
+                helperText={errors.BuildPlan}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="Site"
+                label="Site"
+                value={formData.Site}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={6}>
+              <FormLabel component="legend">Environment</FormLabel>
+              <RadioGroup
+                name="ServerType"
+                value={formData.ServerType}
+                onChange={handleChange}
+                row
+              >
+                <FormControlLabel
+                  value="beta"
+                  control={<Radio />}
+                  label="Beta"
+                />
+                <FormControlLabel
+                  value="prod"
+                  control={<Radio />}
+                  label="Prod"
+                />
+              </RadioGroup>
+            </Grid>
+            <Grid size={6}>
+              <FormLabel component="legend">Is Master</FormLabel>
+              <RadioGroup
+                name="IsMaster"
+                value={formData.IsMaster}
+                onChange={handleChange}
+                row
+              >
+                <FormControlLabel
+                  value="true"
+                  control={<Radio />}
+                  label="True"
+                />
+                <FormControlLabel
+                  value="false"
+                  control={<Radio />}
+                  label="False"
+                />
+              </RadioGroup>
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="IPAddress"
+                label="IP Address"
+                value={formData.IPAddress}
+                onChange={handleChange}
+                error={!!errors.IPAddress}
+                helperText={errors.IPAddress}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="TimeOffset"
+                label="Time Offset (e.g., UTC+08)"
+                value={formData.TimeOffset}
+                onChange={handleChange}
+                error={!!errors.TimeOffset}
+                helperText={errors.TimeOffset}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="PMfullname"
+                label="PM Fullname"
+                value={formData.PMfullname}
+                onChange={handleChange}
+                error={!!errors.PMfullname}
+                helperText={errors.PMfullname}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="L2fullname"
+                label="L2 Fullname"
+                value={formData.L2fullname}
+                onChange={handleChange}
+                error={!!errors.L2fullname}
+                helperText={errors.L2fullname}
+                fullWidth
+              />
+            </Grid>
+            <Grid size={12}>
+              <TextField
+                name="Location"
+                label="Location"
+                value={formData.Location}
+                onChange={handleChange}
+                fullWidth
+              />
+            </Grid>
           </Grid>
-          <Grid size={4}>
-            <TextField
-              name="IPAddress"
-              label="IP Address"
-              value={formData.IPAddress}
-              onChange={handleChange}
-              error={!!errors.IPAddress}
-              helperText={errors.IPAddress}
-              fullWidth
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="TimeOffset"
-              label="Time Offset (e.g., UTC+08)"
-              value={formData.TimeOffset}
-              onChange={handleChange}
-              error={!!errors.TimeOffset}
-              helperText={errors.TimeOffset}
-              fullWidth
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="PMfullname"
-              label="PM Fullname"
-              value={formData.PMfullname}
-              onChange={handleChange}
-              error={!!errors.PMfullname}
-              helperText={errors.PMfullname}
-              fullWidth
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="L2fullname"
-              label="L2 Fullname"
-              value={formData.L2fullname}
-              onChange={handleChange}
-              error={!!errors.L2fullname}
-              helperText={errors.L2fullname}
-              fullWidth
-            />
-          </Grid>
-          <Grid size={4}>
-            <TextField
-              name="Location"
-              label="Location"
-              value={formData.Location}
-              onChange={handleChange}
-              fullWidth
-            />
-          </Grid>
+          <Grid size={4}></Grid>
         </Grid>
       </DialogContent>
       <DialogActions>

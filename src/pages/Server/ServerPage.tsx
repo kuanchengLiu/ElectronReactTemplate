@@ -5,7 +5,6 @@ import { useMovieData } from "@mui/x-data-grid-generator";
 import Button from "@mui/material/Button";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import Stack from "@mui/material/Stack";
-import PrintIcon from "@mui/icons-material/Print";
 import ServerDialog from "../../components/CreateServerDialog";
 import { useDialog } from "../../hooks/useDialog";
 
@@ -38,13 +37,6 @@ export default function QuickFilteringInitialize() {
           startIcon={<NoteAddIcon fontSize="inherit" />}
         >
           Create Server
-        </Button>
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<PrintIcon fontSize="inherit" />}
-        >
-          Print
         </Button>
       </Stack>
 
